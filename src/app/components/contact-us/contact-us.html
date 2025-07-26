@@ -1,0 +1,28 @@
+ <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Contact Us</h2>
+                    <form (submit)="sendWhatsAppMessage($event);">
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label id="companyName" class="form-label">Company Name</label>
+                                <input type="text" [(ngModel)]="companyName" name="companyName" class="form-control" id="companyName" required>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label id="email" class="form-label">Email Address</label>
+                                <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label id="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" [(ngModel)]="message" name="message" id="message" rows="5" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary-custom">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>

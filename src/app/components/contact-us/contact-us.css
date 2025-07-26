@@ -1,0 +1,45 @@
+   * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+        .contact-section {
+            background-color: #f8f9fa;
+            padding: 4rem 0;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+      .btn-primary-custom {
+            background-color: #007bff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,123,255,0.4);
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 15px;
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+        }
