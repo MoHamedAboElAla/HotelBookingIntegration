@@ -11,10 +11,10 @@
 
   <div class="sidebar">
     <h2>لوحة التحكم</h2>
-    <a href="#">الفنادق</a>
-    <a href="#">الغرف</a>
-    <a href="#">المواسم</a>
-    <a href="#">الحجوزات</a>
+   <a routerLink="/dashboard/hotels" routerLinkActive="active"> الفنادق</a>
+    <a routerLink="/dashboard/rooms" routerLinkActive="active">الغرف</a>
+    <a routerLink="/dashboard/seasons" routerLinkActive="active">المواسم</a>
+    <a routerLink="/dashboard/bookings" routerLinkActive="active">الحجوزات</a>
   </div>
 
   <div class="main">
@@ -23,23 +23,8 @@
     </div>
 
     <div class="content">
-      <div class="card">
-        <h3>عدد المستخدمين</h3>
-        <p>245</p>
-      </div>
-      <div class="card">
-        <h3>طلبات اليوم</h3>
-        <p>32</p>
-      </div>
-      <div class="card">
-        <h3>نسبة الإكمال</h3>
-        <p>87%</p>
-      </div>
-      <div class="card">
-        <h3>إجمالي الأرباح</h3>
-        <p>$12,430</p>
-      </div>
-    </div>
+     <router-outlet></router-outlet>
+  </div>
   </div>
 
 </body>
