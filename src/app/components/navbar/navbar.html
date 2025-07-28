@@ -7,20 +7,41 @@
 
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" fragment="about">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" fragment="hotels">Hotels</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/']" fragment="contact">Contact Us</a>
-        </li>
-        <li class="nav-item">
+
+        <ng-container *ngIf="userRole !== 'Admin'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" fragment="about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" fragment="hotels">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" fragment="contact">Contact Us</a>
+          </li>
+        </ng-container>
+
+        <li class="nav-item" *ngIf="userRole === 'Admin'">
           <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+
+        <li class="nav-item text-white d-flex align-items-center me-3" *ngIf="isLoggedIn && userName">
+  <span class="nav-link">Welcome, {{ userName }}!</span>
+</li>
+
+        <li class="nav-item" *ngIf="!isLoggedIn && userRole !== 'Admin'">
+          <a class="nav-link btn btn-outline-light" routerLink="/login">Login</a>
+        </li>
+
+        <li class="nav-item" *ngIf="!isLoggedIn && userRole !== 'Admin'">
+          <a class="nav-link btn btn-outline-success" routerLink="/register">Register</a>
+        </li>
+
+
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link btn btn-outline-danger" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>

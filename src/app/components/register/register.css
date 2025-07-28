@@ -1,0 +1,14 @@
+/* Bootstrap handles most styling. Add custom tweaks if needed. */
+body, .container {
+  background: #f8fafc;
+}
+.card {
+  border-radius: 1rem;
+}
+.btn-success {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+input.ng-invalid.ng-touched, input.ng-invalid.ng-dirty {
+  border-color: #dc3545;
+}

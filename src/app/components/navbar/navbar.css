@@ -28,3 +28,9 @@
         .navbar-nav .nav-link:hover {
             color: #007bff !important;
         }
+
+        .nav-link.active {
+            background-color: #ffffff33;
+            border-radius: 6px;
+            font-weight: bold;
+}
