@@ -1,4 +1,4 @@
-   * {
+   /* * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -71,4 +71,74 @@
     .card p {
       font-size: 16px;
       color: #555;
-    }
+    } */
+
+
+
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1e293b;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #334155;
+}
+
+/* .main {
+  margin-left: 240px;
+  padding: 20px;
+  flex: 1;
+} */
+
+.main {
+  margin-left: 240px;
+  padding: 100px 20px 20px 20px; /* <-- أضفنا 100px padding-top */
+  flex: 1;
+}
+
+.header {
+  background-color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.content {
+  display: block; /* خليها block علشان <router-outlet> يشتغل طبيعي */
+}
+
