@@ -1,0 +1,59 @@
+<div class="container min-vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 1rem;">
+    <div class="card-body">
+      <h2 class="card-title text-center mb-3 text-success">Create Account</h2>
+      <h6 class="card-subtitle mb-4 text-muted text-center">Register to get started!</h6>
+      <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input id="name" type="text" class="form-control" formControlName="name" [class.is-invalid]="registerForm.get('name')?.invalid && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('name')?.hasError('required')">Name is required</div>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input id="email" type="email" class="form-control" formControlName="email" [class.is-invalid]="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('email')?.hasError('required')">Email is required</div>
+          <div class="invalid-feedback" *ngIf="registerForm.get('email')?.hasError('email')">Enter a valid email</div>
+        </div>
+        <div class="mb-3">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <input id="phoneNumber" type="text" class="form-control" formControlName="phoneNumber" [class.is-invalid]="registerForm.get('phoneNumber')?.invalid && (registerForm.get('phoneNumber')?.touched || registerForm.get('phoneNumber')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('phoneNumber')?.hasError('required')">Phone number is required</div>
+          <div class="invalid-feedback" *ngIf="registerForm.get('phoneNumber')?.hasError('pattern')">Enter a valid phone number</div>
+        </div>
+        <div class="mb-3">
+          <label for="commercialRegister" class="form-label">Commercial Register</label>
+          <input id="commercialRegister" type="text" class="form-control" formControlName="commercialRegister" [class.is-invalid]="registerForm.get('commercialRegister')?.invalid && (registerForm.get('commercialRegister')?.touched || registerForm.get('commercialRegister')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('commercialRegister')?.hasError('required')">Commercial register is required</div>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input id="password" type="password" class="form-control" formControlName="password" [class.is-invalid]="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('password')?.hasError('required')">Password is required</div>
+          <div class="invalid-feedback" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</div>
+        </div>
+        <div class="mb-3">
+          <label for="passwordConfirmation" class="form-label">Confirm Password</label>
+          <input id="passwordConfirmation" type="password" class="form-control" formControlName="passwordConfirmation" [class.is-invalid]="(registerForm.get('passwordConfirmation')?.invalid && (registerForm.get('passwordConfirmation')?.touched || registerForm.get('passwordConfirmation')?.dirty)) || registerForm.hasError('mismatch')" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('passwordConfirmation')?.hasError('required')">Confirmation is required</div>
+          <div class="invalid-feedback" *ngIf="registerForm.hasError('mismatch')">Passwords do not match</div>
+        </div>
+        <div class="mb-3">
+          <label for="taxVisa" class="form-label">Tax Visa</label>
+          <input id="taxVisa" type="text" class="form-control" formControlName="taxVisa" [class.is-invalid]="registerForm.get('taxVisa')?.invalid && (registerForm.get('taxVisa')?.touched || registerForm.get('taxVisa')?.dirty)" required>
+          <div class="invalid-feedback" *ngIf="registerForm.get('taxVisa')?.hasError('required')">Tax visa is required</div>
+        </div>
+        <div *ngIf="error" class="alert alert-danger text-center py-2">{{error}}</div>
+        <div *ngIf="success" class="alert alert-success text-center py-2">{{success}}</div>
+        <button type="submit" class="btn btn-success w-100 mt-3" [disabled]="loading || registerForm.invalid">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+          <span *ngIf="!loading">Register</span>
+        </button>
+      </form>
+      <div class="text-center mt-3">
+        <span>Already have an account?</span>
+        <a routerLink="/login" class="ms-1 text-decoration-underline text-success">Login</a>
+      </div>
+    </div>
+  </div>
+</div>

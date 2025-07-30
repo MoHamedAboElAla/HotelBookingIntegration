@@ -1,1 +1,49 @@
-<p>bookings works!</p>
+<div class="mb-3">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (input)="filterBookings()"
+    class="form-control"
+    placeholder="ابحث باسم الوكيل أو رقم الغرفة أو السعر الكلي"
+  />
+</div>
+
+<div class="table-responsive" *ngIf="filteredBookings.length > 0; else loading">
+  <table class="table table-bordered table-striped booking-table">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>رقم الحجز</th>
+        <th>اسم الوكيل</th>
+        <th>البريد الإلكتروني</th>
+        <th>رقم الغرفة</th>
+        <th>نوع الغرفة</th>
+        <th>سعر الليلة</th>
+        <th>تاريخ البداية</th>
+        <th>تاريخ النهاية</th>
+        <th>السعر الكلي</th>
+        <th>الإجراء</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let booking of filteredBookings">
+        <td>{{ booking.bookingId }}</td>
+        <td>{{ booking.agentName }}</td>
+        <td>{{ booking.agentEmail }}</td>
+        <td>{{ booking.roomNumber }}</td>
+        <td>{{ booking.roomType }}</td>
+        <td>{{ booking.roomPrice | currency:'EGP' }}</td>
+        <td>{{ booking.checkIn | date:'shortDate' }}</td>
+        <td>{{ booking.checkOut | date:'shortDate' }}</td>
+        <td>{{ booking.totalPrice | currency:'EGP' }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteBooking(booking.bookingId)">حذف</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #loading >
+  <app-spinner class="d-flex justify-content-center align-items-center" style="height: 200px;"></app-spinner>
+</ng-template>
