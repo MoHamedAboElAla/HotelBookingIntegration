@@ -16,7 +16,6 @@ export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'home', component: Home },
-
   {
     path: 'dashboard',
     component: Dashboard,
