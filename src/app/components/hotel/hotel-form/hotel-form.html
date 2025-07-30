@@ -1,0 +1,107 @@
+<!-- <div class="container mt-4">
+  <h3>{{ isEdit ? 'Edit Hotel' : 'Add Hotel' }}</h3>
+
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" formControlName="name" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description</label>
+      <textarea formControlName="description" class="form-control" rows="3"></textarea>
+    </div>
+
+<div class="mb-3">
+  <label class="form-label">Image</label>
+  <input type="file" class="form-control" (change)="onImageSelected($event)" />
+</div>
+
+<div *ngIf="imagePreview" class="mt-2">
+  <p>Preview:</p>
+  <img [src]="imagePreview" alt="Preview" class="img-fluid preview-img" />
+</div>
+
+
+
+    <button type="submit" class="btn btn-success me-2" [disabled]="form.invalid">
+      {{ isEdit ? 'Update' : 'Add' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+</div> -->
+<div class="container mt-4">
+  <h3>{{ isEdit ? 'Edit Hotel' : 'Add Hotel' }}</h3>
+
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    
+    <!-- Name -->
+    <div class="mb-3">
+      <label class="form-label">Name *</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <div class="text-danger" *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+        Name is required.
+      </div>
+    </div>
+
+    <!-- Location -->
+    <div class="mb-3">
+      <label class="form-label">Location *</label>
+      <input type="text" class="form-control" formControlName="location" />
+      <div class="text-danger" *ngIf="form.get('location')?.touched && form.get('location')?.invalid">
+        Location is required.
+      </div>
+    </div>
+
+    <!-- Country -->
+    <div class="mb-3">
+      <label class="form-label">Country *</label>
+      <input type="text" class="form-control" formControlName="country" />
+      <div class="text-danger" *ngIf="form.get('country')?.touched && form.get('country')?.invalid">
+        Country is required.
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label class="form-label">Description *</label>
+      <textarea class="form-control" formControlName="description" rows="3"></textarea>
+      <div class="text-danger" *ngIf="form.get('description')?.touched && form.get('description')?.invalid">
+        Description is required.
+      </div>
+    </div>
+
+    <!-- Stars -->
+    <div class="mb-3">
+      <label class="form-label">Stars *</label>
+      <input type="number" class="form-control" formControlName="stars" min="1" max="5" />
+      <div class="text-danger" *ngIf="form.get('stars')?.touched && form.get('stars')?.invalid">
+        <div *ngIf="form.get('stars')?.errors?.['required']">Stars is required.</div>
+        <div *ngIf="form.get('stars')?.errors?.['min'] || form.get('stars')?.errors?.['max']">
+          Stars must be between 1 and 5.
+        </div>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="mb-3">
+      <label class="form-label">ImageFile *</label>
+      <input type="file" class="form-control" (change)="onImageSelected($event)" />
+      <div class="text-danger" *ngIf="!selectedImageFile && !isEdit && submitted">
+        Image is required.
+      </div>
+    </div>
+
+    <!-- Image Preview -->
+    <div *ngIf="imagePreview" class="mb-3">
+      <label class="form-label">Preview:</label><br />
+      <img [src]="imagePreview" alt="Image Preview" class="img-thumbnail preview-img" />
+    </div>
+
+    <!-- Buttons -->
+    <button type="submit" class="btn btn-success me-2" [disabled]="form.invalid">
+      {{ isEdit ? 'Update' : 'Add' }}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  </form>
+</div>
