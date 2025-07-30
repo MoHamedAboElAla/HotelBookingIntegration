@@ -30,7 +30,7 @@ export const routes: Routes = [
       { path: 'seasons', component: Seasons },
        { path: 'seasons/add-season', component: AddSeason },
         { path: 'seasons/edit/:id', component: EditSeason },
-        { path: 'seasons/details/:id', component: SeasonDetails }
+        { path: 'seasons/details/:id', component: SeasonDetails },
       { path: 'bookings', component: Bookings },
     ]
   },

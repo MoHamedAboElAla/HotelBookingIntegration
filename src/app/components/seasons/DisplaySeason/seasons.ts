@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { ISeason } from '../../../models/iseason';
 import { SeasonService } from '../../../services/season';
 import { CommonModule } from '@angular/common';
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Seasons implements OnInit {
   seasons: ISeason[] = [];
-
+private cdr = inject(ChangeDetectorRef);
   constructor(private seasonService: SeasonService) {}
 
   ngOnInit(): void {
@@ -25,7 +25,8 @@ export class Seasons implements OnInit {
   loadSeasons(): void {
     this.seasonService.getAll().subscribe({
       next: (data) => this.seasons = data,
-      error: (err) => console.error(err)
+      error: (err) => console.error(err),
+      complete: () => this.cdr.detectChanges()
     });
   }
 
