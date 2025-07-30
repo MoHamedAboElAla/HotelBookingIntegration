@@ -1,0 +1,16 @@
+.hotel-card {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-image {
+  height: 180px;
+  object-fit: cover;
+}
+
+.hotel-body {
+  flex: 1 1 auto;
+}

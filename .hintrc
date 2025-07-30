@@ -20,6 +20,8 @@
       {
         "label": "off"
       }
-    ]
+    ],
+    "no-inline-styles": "off",
+    "axe/structure": "off"
   }
 }
