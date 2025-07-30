@@ -16,21 +16,11 @@ import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
 
 export const routes: Routes = [
-{ path: 'home', component: Home },
-{ path: '', component: Home },
-{path: 'dashboard',component:Dashboard,
-    children: [
-        {path: 'hotels', component: Hotels},
-        {path:'rooms',component:Rooms},
-        {path: 'seasons', component:Seasons},
-        { path: 'seasons/add-season', component: AddSeason },
-        { path: 'seasons/edit/:id', component: EditSeason },
-        { path: 'seasons/details/:id', component: SeasonDetails },
-        {path: 'bookings', component: Bookings},
-        { path: 'login', component: Login },
-        { path: 'register', component: Register },
-    ]},
-    {
+
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
+  { path: 'home', component: Home },
+  {
     path: 'dashboard',
     component: Dashboard,
     canActivate: [AdminGuard],
@@ -38,6 +28,9 @@ export const routes: Routes = [
       { path: 'hotels', component: Hotels },
       { path: 'rooms', component: Rooms },
       { path: 'seasons', component: Seasons },
+       { path: 'seasons/add-season', component: AddSeason },
+        { path: 'seasons/edit/:id', component: EditSeason },
+        { path: 'seasons/details/:id', component: SeasonDetails }
       { path: 'bookings', component: Bookings },
     ]
   },
