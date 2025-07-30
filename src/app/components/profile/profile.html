@@ -1,0 +1,101 @@
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg rounded">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Profile</h2>
+
+          <form [formGroup]="profileForm" (ngSubmit)="onUpdateProfile()" *ngIf="!loading; else loadingTemplate">
+<div class="mb-3">
+  <label class="form-label">Full Name</label>
+  <input type="text" class="form-control" formControlName="name" />
+  <div class="text-danger mt-1" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+    <div *ngIf="profileForm.get('name')?.errors?.['required']">Name is required.</div>
+    <div *ngIf="profileForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters.</div>
+  </div>
+</div>
+
+      <div class="mb-3">
+  <label class="form-label">Email</label>
+  <input type="email" class="form-control" formControlName="email" />
+  <div class="text-danger mt-1" *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid">
+    <div *ngIf="profileForm.get('email')?.errors?.['required']">Email is required.</div>
+    <div *ngIf="profileForm.get('email')?.errors?.['email']">Invalid email format.</div>
+  </div>
+</div>
+
+ <div class="mb-3">
+  <label class="form-label">Phone Number</label>
+  <input type="text" class="form-control" formControlName="phoneNumber" />
+  <div class="text-danger mt-1" *ngIf="profileForm.get('phoneNumber')?.touched && profileForm.get('phoneNumber')?.invalid">
+    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone number is required.</div>
+    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Invalid Egyptian phone number.</div>
+  </div>
+</div>
+
+            <div class="mb-3">
+              <label class="form-label">Commercial Register</label>
+              <input type="text" class="form-control" formControlName="commercialRegister" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Tax Visa</label>
+              <input type="text" class="form-control" formControlName="taxVisa" />
+            </div>
+
+            <div class="text-center mt-4">
+              <button class="btn btn-primary px-5" type="submit" [disabled]="profileForm.invalid">Update Profile</button>
+            </div>
+
+            <div *ngIf="successMessage" class="alert alert-success mt-3 text-center">{{ successMessage }}</div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3 text-center">{{ errorMessage }}</div>
+          </form>
+
+          <ng-template #loadingTemplate>
+            <p class="text-center mt-4">Loading profile data...</p>
+          </ng-template>
+
+          <!-- Change Password Section -->
+          <div class="text-center mt-5">
+            <button class="btn btn-outline-secondary mb-3" (click)="showPasswordForm = !showPasswordForm">
+              Change Password
+            </button>
+
+<div *ngIf="showPasswordForm">
+  <form [formGroup]="changePasswordForm" (ngSubmit)="onUpdatePassword()">
+    <div class="mb-3">
+      <label class="form-label">Current Password</label>
+      <input type="password" class="form-control" formControlName="currentPassword">
+      <div class="text-danger mt-1" *ngIf="changePasswordForm.get('currentPassword')?.touched && changePasswordForm.get('currentPassword')?.invalid">
+        Current password is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">New Password</label>
+      <input type="password" class="form-control" formControlName="newPassword">
+      <div class="text-danger mt-1" *ngIf="changePasswordForm.get('newPassword')?.touched && changePasswordForm.get('newPassword')?.invalid">
+        <div *ngIf="changePasswordForm.get('newPassword')?.errors?.['required']">New password is required.</div>
+        <div *ngIf="changePasswordForm.get('newPassword')?.errors?.['minlength']">Password must be at least 6 characters.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword">
+      <div class="text-danger mt-1" *ngIf="changePasswordForm.get('confirmPassword')?.touched && changePasswordForm.hasError('passwordsMismatch')">
+        Passwords do not match.
+      </div>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-success" [disabled]="changePasswordForm.invalid">Update Password</button>
+    </div>
+  </form>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,8 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
+import { Profile } from './components/profile/profile';
+import { ProfileGuard } from './services/profile-guard';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -29,7 +31,8 @@ export const routes: Routes = [
     ]
   },
 
-  // redirect root to home
+{ path: 'profile', component: Profile, canActivate: [ProfileGuard] },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];

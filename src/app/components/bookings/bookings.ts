@@ -15,7 +15,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class Bookings implements OnInit {
   private bookingService = inject(BookingService);
     private cdr = inject(ChangeDetectorRef); // ✅
-    
+
   bookings: Booking[] = [];
   filteredBookings: Booking[] = [];
   searchTerm: string = '';
@@ -26,11 +26,11 @@ export class Bookings implements OnInit {
 
   loadBookings() {
     this.bookingService.getAllBookings().subscribe(data => {
-          console.log("API Response: ", data); // ✅ شوف الداتا وصلت إمتى
+          console.log("API Response: ", data);
       this.bookings = data;
       this.filteredBookings = data;
 
-            this.cdr.detectChanges(); // ✅ أجبِر Angular يعيد التحديث
+      this.cdr.detectChanges(); // ✅ أجبِر Angular يعيد التحديث
 
     });
   }
