@@ -15,14 +15,8 @@ import { Spinner } from "../spinner/spinner";
 })
 export class Bookings implements OnInit {
   private bookingService = inject(BookingService);
-<<<<<<< HEAD
-    private cdr = inject(ChangeDetectorRef); // ✅
-
-=======
     private cdr = inject(ChangeDetectorRef); 
-    
->>>>>>> 10cae68921b9fabee8c4cc407c58a27700490cd0
-  bookings: Booking[] = [];
+      bookings: Booking[] = [];
   filteredBookings: Booking[] = [];
   searchTerm: string = '';
 
@@ -32,20 +26,11 @@ export class Bookings implements OnInit {
 
   loadBookings() {
     this.bookingService.getAllBookings().subscribe(data => {
-<<<<<<< HEAD
-          console.log("API Response: ", data);
-      this.bookings = data;
-      this.filteredBookings = data;
-
-      this.cdr.detectChanges(); // ✅ أجبِر Angular يعيد التحديث
-=======
           console.log("API Response: ", data); 
       this.bookings = data;
       this.filteredBookings = data;
 
             this.cdr.detectChanges(); 
->>>>>>> 10cae68921b9fabee8c4cc407c58a27700490cd0
-
     });
   }
 
