@@ -21,15 +21,21 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
+
 import { Profile } from './components/profile/profile';
 import { ProfileGuard } from './services/profile-guard';
+
+import { Cart } from './components/cart/cart';
+import { PaymentSuccess } from './components/payment-success/payment-success';
+
 
 export const routes: Routes = [
 
   { path: 'login', component: Login },
   { path: 'register', component: Register },
   { path: 'home', component: Home },
-
+  {path:'cart', component: Cart},
+  {path: 'payment-success',component: PaymentSuccess},
   {
     path: 'dashboard',
     component: Dashboard,

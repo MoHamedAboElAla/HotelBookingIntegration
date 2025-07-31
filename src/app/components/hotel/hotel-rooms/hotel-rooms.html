@@ -51,9 +51,22 @@
                   {{ room.isAvailable ? 'Yes' : 'No' }}
                 </span>
               </p>
-              <p class="small text-muted">{{ room.description }}</p>
+              <p class="small text-muted"><strong>description:</strong>{{ room.description }}</p>
 
-           
+           <div *ngIf="room.isAvailable">
+  <label class="form-label">Check-In Date:</label>
+  <input type="date" [(ngModel)]="room.startDate" class="form-control mb-2" />
+
+  <label class="form-label">Check-Out Date:</label>
+  <input type="date" [(ngModel)]="room.endDate" class="form-control mb-2" />
+
+  <button class="btn btn-success w-100" (click)="bookRoom(room)">احجز الآن</button>
+</div>
+
+<div *ngIf="!room.isAvailable" class="text-danger fw-bold">
+  الغرفة غير متاحة حالياً
+</div>
+
             </div>
           </div>
         </div>

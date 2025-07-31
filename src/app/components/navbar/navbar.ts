@@ -14,6 +14,7 @@ export class Navbar {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+
   get isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
