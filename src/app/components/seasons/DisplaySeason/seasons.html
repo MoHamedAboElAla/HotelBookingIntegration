@@ -1,0 +1,75 @@
+<div class="container mt-4">
+
+  <!-- Header Section -->
+  <div class="p-4 mb-4 rounded shadow text-white d-flex justify-content-between align-items-center" style="background: linear-gradient(90deg, #6a11cb, #2575fc);">
+    <div>
+      <h2 class="fw-bold mb-0">Season List</h2>
+      <small>Manage pricing seasons by time of year</small>
+    </div>
+    <button class="btn btn-info text-white fw-bold px-4 rounded-pill" [routerLink]="['/dashboard/seasons/add-season']" >
+      + Add New Season
+    </button>
+  </div>
+
+  <!-- Table Section -->
+  <div class="card shadow rounded">
+    <div class="card-body">
+      <table class="table table-bordered table-hover text-center align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th><i class="bi bi-tag-fill"></i> Name</th>
+            <th><i class="bi bi-calendar-event-fill"></i> Start Date</th>
+            <th><i class="bi bi-calendar-event-fill"></i> End Date</th>
+            <th><i class="bi bi-percent"></i> Price Factor</th>
+            <th><i class="bi bi-gear"></i> Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let season of seasons">
+            <td>{{ season.name }}</td>
+            <td>{{ season.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ season.endDate | date:'dd/MM/yyyy' }}</td>
+            <td class="text-success fw-bold">{{ season.priceFactor | number:'1.2-2' }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" [routerLink]="['/dashboard/seasons/edit', season.id]">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-sm btn-danger me-1" (click)="deleteSeason(season.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+              <button [routerLink]="['/dashboard/seasons/details', season.id]" class="btn btn-info btn-sm text-white">
+                <i class="bi bi-eye"></i> View
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+    </div>
+  </div>
+
+</div>
+<nav *ngIf="totalCount > pageSize">
+  <ul class="pagination justify-content-center mt-4">
+    <li class="page-item" [class.disabled]="pageNumber === 1">
+      <button class="page-link" (click)="previousPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </button>
+    </li>
+
+    <li class="page-item disabled">
+      <span class="page-link">
+        Page {{ pageNumber }} of {{ totalPages() }}
+      </span>
+    </li>
+
+    <li class="page-item" [class.disabled]="pageNumber === totalPages()">
+      <button class="page-link" (click)="nextPage()" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+

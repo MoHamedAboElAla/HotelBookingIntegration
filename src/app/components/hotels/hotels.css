@@ -1,0 +1,48 @@
+      * {
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+        }
+          .hotel-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-10px);
+        }
+    .section-title {
+        font-size: 2.5rem;
+         font-weight: 700;
+         text-align: center;
+        margin-bottom: 3rem;
+        color: #333;
+        margin-top:40px ;
+        }
+
+        .hotel-card img {
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .hotel-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .hotel-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }

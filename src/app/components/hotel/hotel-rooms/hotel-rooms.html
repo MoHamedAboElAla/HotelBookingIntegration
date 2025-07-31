@@ -1,0 +1,80 @@
+<!-- <div class="container mt-4">
+  <h3>Rooms for Hotel #{{ hotelId }}</h3>
+  @if (!loading && rooms.length > 0) {
+    <div class="row">
+      @for (room of rooms; track room.id) {
+        <div class="col-md-4 mb-3">
+          <div class="card shadow">
+            <img
+              [src]="'https://localhost:7235' + room.imageUrl"
+              (error)="onImageError($event)"
+              class="card-img-top"
+              alt="Room image"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Room #{{ room.roomNumber }}</h5>
+              <p class="card-text">Type: {{ room.roomType }}</p>
+              <p class="card-text">Price: {{ room.pricePerNight }} SAR</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else if (loading) {
+    <p>Loading rooms...</p>
+  } @else {
+    <p>No rooms found for this hotel.</p>
+  }
+</div> -->
+<div class="container mt-4">
+  <h3 class="text-primary fw-bold mb-4">Rooms for Hotel #{{ hotelId }}</h3>
+  
+  @if (!loading && rooms.length > 0) {
+    <div class="row">
+      @for (room of rooms; track room.id) {
+        <div class="col-md-4 mb-4">
+          <div class="card shadow rounded-4 border-0 h-100">
+            <img
+              [src]="'https://localhost:7235' + room.imageUrl"
+              (error)="onImageError($event)"
+              class="card-img-top rounded-top"
+              alt="Room image"
+              style="height: 200px; object-fit: cover;"
+            />
+
+            <div class="card-body d-flex flex-column gap-2">
+              <h5 class="card-title text-center text-primary">Room #{{ room.roomNumber }}</h5>
+              <p class="mb-1"><strong>Type:</strong> {{ room.roomType }}</p>
+              <p class="mb-1"><strong>Price:</strong> {{ room.pricePerNight }} SAR</p>
+              <p class="mb-1"><strong>Available:</strong>
+                <span [class.text-success]="room.isAvailable" [class.text-danger]="!room.isAvailable">
+                  {{ room.isAvailable ? 'Yes' : 'No' }}
+                </span>
+              </p>
+              <p class="small text-muted"><strong>description:</strong>{{ room.description }}</p>
+
+           <div *ngIf="room.isAvailable">
+  <label class="form-label">Check-In Date:</label>
+  <input type="date" [(ngModel)]="room.startDate" class="form-control mb-2" />
+
+  <label class="form-label">Check-Out Date:</label>
+  <input type="date" [(ngModel)]="room.endDate" class="form-control mb-2" />
+
+  <button class="btn btn-success w-100" (click)="bookRoom(room)">احجز الآن</button>
+</div>
+
+<div *ngIf="!room.isAvailable" class="text-danger fw-bold">
+  الغرفة غير متاحة حالياً
+</div>
+
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else if (loading) {
+    <p>Loading rooms...</p>
+  } @else {
+    <p>No rooms found for this hotel.</p>
+  }
+</div>

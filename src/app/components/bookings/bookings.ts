@@ -4,19 +4,19 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ChangeDetectorRef } from '@angular/core';
+import { Spinner } from "../spinner/spinner";
 
 @Component({
   selector: 'app-bookings',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Spinner],
   templateUrl: './bookings.html',
   styleUrl: './bookings.css'
 })
 export class Bookings implements OnInit {
   private bookingService = inject(BookingService);
-    private cdr = inject(ChangeDetectorRef); // ✅
-    
-  bookings: Booking[] = [];
+    private cdr = inject(ChangeDetectorRef); 
+      bookings: Booking[] = [];
   filteredBookings: Booking[] = [];
   searchTerm: string = '';
 
@@ -26,12 +26,11 @@ export class Bookings implements OnInit {
 
   loadBookings() {
     this.bookingService.getAllBookings().subscribe(data => {
-          console.log("API Response: ", data); // ✅ شوف الداتا وصلت إمتى
+          console.log("API Response: ", data); 
       this.bookings = data;
       this.filteredBookings = data;
 
-            this.cdr.detectChanges(); // ✅ أجبِر Angular يعيد التحديث
-
+            this.cdr.detectChanges(); 
     });
   }
 
@@ -45,11 +44,17 @@ export class Bookings implements OnInit {
   }
 
   deleteBooking(bookingId: number) {
-    if (confirm('هل أنت متأكد من حذف الحجز؟')) {
-      this.bookingService.deleteBooking(bookingId).subscribe(() => {
+  if (confirm('هل أنت متأكد من حذف الحجز؟')) {
+    this.bookingService.deleteBooking(bookingId).subscribe({
+      next: () => {
         this.bookings = this.bookings.filter(b => b.bookingId !== bookingId);
         this.filterBookings();
-      });
-    }
+      },
+      error: (err) => {
+        alert('لا يمكن حذف الحجز الذي بدأ بالفعل')
+      }
+    });
   }
+}
+
 }

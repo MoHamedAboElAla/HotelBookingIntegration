@@ -1,0 +1,25 @@
+/* .hotel-card {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-image {
+  height: 180px;
+  object-fit: cover;
+}
+
+.hotel-body {
+  flex: 1 1 auto;
+} */
+ .hotel-card {
+  width: 300px;
+  margin: 10px;
+}
+
+.hotel-image {
+  height: 200px;
+  object-fit: cover;
+}
