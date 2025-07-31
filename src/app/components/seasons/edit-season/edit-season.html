@@ -7,13 +7,14 @@
 
 
     <div class="card-body">
-        <div *ngIf="validationErrors.length > 0" class="alert alert-danger">
-  <ul class="mb-0">
-    <li *ngFor="let err of validationErrors">{{ err }}</li>
-  </ul>
-</div>
+      <div *ngIf="validationErrors.length > 0" class="alert alert-danger">
+      <ul class="mb-0">
+        <li *ngFor="let err of validationErrors">{{ err }}</li>
+      </ul>
+    </div>
 
-      <form (ngSubmit)="onSubmit()" #seasonForm="ngForm">
+      <form *ngIf="season" (ngSubmit)="onSubmit()" #seasonForm="ngForm">
+
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" id="name" name="name" class="form-control" required [(ngModel)]="season.name" />

@@ -29,4 +29,14 @@ export class SeasonService {
   delete(id: number): Observable<ISeason> {
     return this.http.delete<ISeason>(`${this.baseUrl}?id=${id}`);
   }
+
+  getPagedSeasons(pageNumber: number, pageSize: number): Observable<any> {
+  const params = {
+    pageNumber: pageNumber.toString(),
+    pageSize: pageSize.toString()
+  };
+
+  return this.http.get<any>('https://localhost:7235/api/Seasons/paged', { params });
+}
+
 }
