@@ -45,9 +45,35 @@
           </tr>
         </tbody>
       </table>
+      
+
     </div>
   </div>
 
 </div>
+<<<<<<< HEAD
 
+=======
+<nav *ngIf="totalCount > pageSize">
+  <ul class="pagination justify-content-center mt-4">
+    <li class="page-item" [class.disabled]="pageNumber === 1">
+      <button class="page-link" (click)="previousPage()" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </button>
+    </li>
+
+    <li class="page-item disabled">
+      <span class="page-link">
+        Page {{ pageNumber }} of {{ totalPages() }}
+      </span>
+    </li>
+
+    <li class="page-item" [class.disabled]="pageNumber === totalPages()">
+      <button class="page-link" (click)="nextPage()" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </button>
+    </li>
+  </ul>
+</nav>
+>>>>>>> 5b7f8365539e5496e35564873ab289ea3d50d3d9
 

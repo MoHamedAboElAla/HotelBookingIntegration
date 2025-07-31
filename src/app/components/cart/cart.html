@@ -1,0 +1,100 @@
+<div class="cart-wrapper">
+  <div class="container-fluid px-4 py-5 mt-5">
+    <!-- Header Section -->
+    <div class="cart-header text-center mb-5">
+      <div class="cart-icon mb-3">
+        <i class="fas fa-shopping-bag"></i>
+      </div>
+      <h1 class="cart-title mb-3">سلة المشتريات</h1>
+      <div class="items-count">
+        <span class="count-badge">{{ bookings.length }}</span>
+        <span class="count-text">حجز في الانتظار</span>
+      </div>
+    </div>
+
+    <!-- Cart Content -->
+    <div class="cart-content">
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+          
+          <!-- Bookings List -->
+          <div class="bookings-container">
+            <div class="booking-card" *ngFor="let booking of bookings; let i = index">
+              <div class="card-header">
+                <div class="booking-number">
+                  <span>الحجز #{{ i + 1 }}</span>
+                </div>
+                <button class="delete-btn" (click)="deleteBooking(booking.bookingId)" title="حذف الحجز">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+              
+              <div class="card-body">
+                <div class="hotel-info">
+                  <h3 class="hotel-name">{{ booking.hotelName }}</h3>
+                  <span class="room-type">{{ booking.roomType }}</span>
+                </div>
+                
+                <div class="booking-details">
+                  <div class="detail-group">
+                    <div class="detail-item">
+                      <i class="fas fa-calendar-check"></i>
+                      <div>
+                        <span class="label">تاريخ الوصول</span>
+                        <span class="value">{{ booking.checkInDate | date: 'dd/MM/yyyy' }}</span>
+                      </div>
+                    </div>
+                    
+                    <div class="detail-item">
+                      <i class="fas fa-calendar-times"></i>
+                      <div>
+                        <span class="label">تاريخ المغادرة</span>
+                        <span class="value">{{ booking.checkOutDate | date: 'dd/MM/yyyy' }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-group">
+                    <div class="detail-item">
+                      <i class="fas fa-door-open"></i>
+                      <div>
+                        <span class="label">رقم الغرفة</span>
+                        <span class="value">{{ booking.roomNumber }}</span>
+                      </div>
+                    </div>
+                    
+                    <div class="detail-item price-item">
+                      <i class="fas fa-tag"></i>
+                      <div>
+                        <span class="label">السعر الإجمالي</span>
+                        <span class="price">{{ booking.totalPrice }} ج.م</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cart Summary -->
+          <div class="cart-summary">
+            <div class="summary-content">
+              <div class="total-section">
+                <div class="total-label">الإجمالي الكلي</div>
+                <div class="total-amount">{{ totalPrice }} ج.م</div>
+              </div>
+              
+              <div class="checkout-section">
+                <button class="checkout-btn" (click)="orderNow()">
+                  <i class="fas fa-check-circle"></i>
+                  <span>تأكيد الطلب</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

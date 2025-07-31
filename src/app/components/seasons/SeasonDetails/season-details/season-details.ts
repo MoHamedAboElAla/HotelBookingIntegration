@@ -29,6 +29,7 @@ export class SeasonDetails {
     this.http.get(`https://localhost:7235/api/Seasons/${this.seasonId}`).subscribe({
       next: (data: any) => {
         this.season = data;
+        console.log(data)
         this.cd.detectChanges(); 
       },
       error: err => {
