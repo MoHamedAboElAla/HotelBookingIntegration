@@ -16,21 +16,28 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './seasons.css'
 })
 export class Seasons implements OnInit {
+  totalCount: number = 0;
+pageNumber: number = 1;
+pageSize: number = 5;
+
   seasons: ISeason[] = [];
 private cdr = inject(ChangeDetectorRef);
   constructor(private seasonService: SeasonService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.loadSeasons();
+    this.loadPagedSeasons();
   }
 
-  loadSeasons(): void {
-    this.seasonService.getAll().subscribe({
-      next: (data) => this.seasons = data,
-      error: (err) => console.error(err),
-      complete: () => this.cdr.detectChanges()
-    });
-  }
+  loadPagedSeasons(): void {
+  this.seasonService.getPagedSeasons(this.pageNumber, this.pageSize).subscribe({
+    next: (response) => {
+      this.seasons = response.data;
+      this.totalCount = response.totalCount;
+      this.cdr.detectChanges();
+    },
+    error: (err) => console.error(err)
+  });
+}
 
   deleteSeason(id: number) {
   Swal.fire({
@@ -46,7 +53,7 @@ private cdr = inject(ChangeDetectorRef);
     if (result.isConfirmed) {
       this.http.delete(`https://localhost:7235/api/Seasons/${id}`).subscribe({
         next: () => {
-          this.loadSeasons();
+          this.loadPagedSeasons();
           Swal.fire(
             'Deleted!',
             'Season has been deleted.',
@@ -59,6 +66,24 @@ private cdr = inject(ChangeDetectorRef);
       });
     }
   });
+}
+
+totalPages(): number {
+  return Math.ceil(this.totalCount / this.pageSize);
+}
+
+previousPage(): void {
+  if (this.pageNumber > 1) {
+    this.pageNumber--;
+    this.loadPagedSeasons();
+  }
+}
+
+nextPage(): void {
+  if (this.pageNumber < this.totalPages()) {
+    this.pageNumber++;
+    this.loadPagedSeasons();
+  }
 }
 
   
