@@ -4,7 +4,7 @@ import { Rooms } from './rooms';
 
 describe('Rooms', () => {
   let component: Rooms;
-  let fixture: ComponentFixture<Rooms>;
+  let fixture: ComponentFixture<Rooms >;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

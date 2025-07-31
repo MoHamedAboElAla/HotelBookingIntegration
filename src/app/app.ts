@@ -7,12 +7,13 @@ import { FeaturedHotels } from "./components/featured-hotels/featured-hotels";
 import { ContactUs } from "./components/contact-us/contact-us";
 import { Footer } from "./components/footer/footer";
 import { Home } from "./components/home/home";
+import { Rooms } from './components/rooms/rooms';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Footer, RouterOutlet,RouterModule],
+  imports: [Navbar, Footer, RouterOutlet,RouterModule,Rooms],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App {
   protected readonly title = signal('HotelBookingIntegration');
