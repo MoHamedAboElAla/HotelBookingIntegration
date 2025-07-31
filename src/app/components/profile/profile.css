@@ -1,0 +1,12 @@
+/* يمكنك الاستغناء عن كثير من CSS لأن Bootstrap يكفي، لكن هذا اختياري */
+.card {
+  border-radius: 15px;
+}
+
+.card-body {
+  padding: 40px;
+}
+
+h2 {
+  color: #333;
+}

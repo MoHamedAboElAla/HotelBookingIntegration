@@ -27,9 +27,11 @@
           <a class="nav-link" routerLink="/dashboard">Dashboard</a>
         </li>
 
+        <!-- User Name and Profile Button -->
         <li class="nav-item text-white d-flex align-items-center me-3" *ngIf="isLoggedIn && userName">
-  <span class="nav-link">Welcome, {{ userName }}!</span>
-</li>
+          <span class="nav-link">Welcome, {{ userName }}</span>
+          <button class="btn btn-sm btn-outline-light ms-2" (click)="goToProfile()">Profile</button>
+        </li>
 
         <li class="nav-item text-white d-flex align-items-center me-3" *ngIf="isLoggedIn && userName">
    <a class="nav-link" routerLink="/cart"><span>Cart</span>
@@ -44,10 +46,10 @@
           <a class="nav-link btn btn-outline-success" routerLink="/register">Register</a>
         </li>
 
-
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link btn btn-outline-danger" (click)="logout()">Logout</a>
         </li>
+
       </ul>
     </div>
   </div>

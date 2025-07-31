@@ -16,8 +16,7 @@ import { Spinner } from "../spinner/spinner";
 export class Bookings implements OnInit {
   private bookingService = inject(BookingService);
     private cdr = inject(ChangeDetectorRef); 
-    
-  bookings: Booking[] = [];
+      bookings: Booking[] = [];
   filteredBookings: Booking[] = [];
   searchTerm: string = '';
 
@@ -32,7 +31,6 @@ export class Bookings implements OnInit {
       this.filteredBookings = data;
 
             this.cdr.detectChanges(); 
-
     });
   }
 

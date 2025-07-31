@@ -5,13 +5,13 @@ import { Observable } from 'rxjs';
 
 export interface Booking {
   bookingId: number;
+  checkIn: string;
+  checkOut: string;
   agentName: string;
   agentEmail: string;
   roomNumber: number;
   roomType: string;
   roomPrice: number;
-  checkIn: string;
-  checkOut: string;
   totalPrice: number;
 }
 

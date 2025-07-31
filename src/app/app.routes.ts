@@ -21,8 +21,13 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
+
+import { Profile } from './components/profile/profile';
+import { ProfileGuard } from './services/profile-guard';
+
 import { Cart } from './components/cart/cart';
 import { PaymentSuccess } from './components/payment-success/payment-success';
+
 
 export const routes: Routes = [
 
@@ -36,43 +41,36 @@ export const routes: Routes = [
     component: Dashboard,
     canActivate: [AdminGuard],
     children: [
-//       { path: 'hotels', component: Hotels },
       { path: 'hotels', component: HotelList },
 
-    {
-      path: 'hotels/add',
-      loadComponent: () =>
-        import('./components/hotel/hotel-form/hotel-form').then(m => m.HotelForm)
-    },
-    {
-      path: 'hotels/edit/:id',
-      loadComponent: () =>
-        import('./components/hotel/hotel-form/hotel-form').then(m => m.HotelForm)
-    },
-    {
-      path: 'hotels/:id/rooms',
-      loadComponent: () =>
-        import('./components/hotel/hotel-rooms/hotel-rooms').then(m => m.HotelRooms)
-    },
+      {
+        path: 'hotels/add',
+        loadComponent: () =>
+          import('./components/hotel/hotel-form/hotel-form').then(m => m.HotelForm)
+      },
+      {
+        path: 'hotels/edit/:id',
+        loadComponent: () =>
+          import('./components/hotel/hotel-form/hotel-form').then(m => m.HotelForm)
+      },
+      {
+        path: 'hotels/:id/rooms',
+        loadComponent: () =>
+          import('./components/hotel/hotel-rooms/hotel-rooms').then(m => m.HotelRooms)
+      },
       { path: 'rooms', component: Rooms },
       { path: 'seasons', component: Seasons },
-       { path: 'seasons/add-season', component: AddSeason },
-        { path: 'seasons/edit/:id', component: EditSeason },
-        { path: 'seasons/details/:id', component: SeasonDetails },
+      { path: 'seasons/add-season', component: AddSeason },
+      { path: 'seasons/edit/:id', component: EditSeason },
+      { path: 'seasons/details/:id', component: SeasonDetails },
       { path: 'bookings', component: Bookings },
     ]
   },
-  
-{
-  path: 'hotels',
-  component: Hotels
-},
-{
-  path: 'hotelRooms/:id',
-  component: HotelRooms
-},
-  // redirect root to home
+
+  { path: 'profile', component: Profile, canActivate: [ProfileGuard] },
+  { path: 'hotels', component: Hotels },
+  { path: 'hotelRooms/:id', component: HotelRooms },
+
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' }
 ];
-

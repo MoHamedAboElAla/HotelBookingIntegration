@@ -2,6 +2,7 @@ import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListen
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+
 import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { accountInterceptor } from './services/account-interceptor';
@@ -12,6 +13,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
+
     importProvidersFrom(FormsModule),
     provideToastr(),
 
@@ -20,10 +22,19 @@ export const appConfig: ApplicationConfig = {
       withFetch()
     ),
 
+
     provideRouter(
       routes,
       withInMemoryScrolling({
         anchorScrolling: 'enabled',
+
+        scrollPositionRestoration: 'enabled'
+      })
+    ),
+    provideClientHydration(withEventReplay())
+  ]
+};
+
         scrollPositionRestoration: 'enabled',
       })
     ),
@@ -31,3 +42,4 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay())
   ]
 };
+
