@@ -1,4 +1,4 @@
-
+<!-- 
 <div class="d-flex flex-wrap justify-content-center gap-4">
     <div class="d-flex justify-content-end mb-3">
   <a [routerLink]="['/dashboard/hotels/add']" class="btn btn-primary">
@@ -30,7 +30,7 @@
           <!-- <button class="btn btn-secondary btn-sm" (click)="editHotel(hotel.id)">
             Edit
           </button> -->
-          <a
+          <!-- <a
            [routerLink]="['/dashboard/hotels/edit', hotel.id]"
             class="btn btn-secondary btn-sm"
            >
@@ -43,4 +43,50 @@
       </div>
     </div>
   }
+</div> --> 
+
+<div class="d-flex flex-wrap justify-content-center gap-4">
+  <div class="d-flex justify-content-end mb-3 w-100">
+    <a [routerLink]="['/dashboard/hotels/add']" class="btn btn-primary px-4 py-2">
+      + Add Hotel
+    </a>
+  </div>
+
+  @for (hotel of pagedHotels; track hotel.id) {
+    <div class="hotel-card card shadow rounded-4 border-0">
+      <img
+        [src]="hotel.imageUrl"
+        alt="{{ hotel.name || 'Hotel Image' }}"
+        class="card-img-top rounded-top hotel-image"
+      />
+
+      <div class="card-body d-flex flex-column justify-content-between p-3 hotel-body">
+        <div>
+          <h5 class="card-title text-primary text-center fw-bold">{{ hotel.name }}</h5>
+          <p class="card-text text-muted text-center small">
+            {{ hotel.description }}
+          </p>
+        </div>
+
+        <div class="d-flex flex-wrap justify-content-center gap-2 mt-3">
+          <a
+            [routerLink]="['/dashboard/hotels', hotel.id, 'rooms']"
+            class="btn btn-outline-info px-4 py-2"
+          >
+            Show Rooms
+          </a>
+          <a
+            [routerLink]="['/dashboard/hotels/edit', hotel.id]"
+            class="btn btn-secondary px-4 py-2"
+          >
+            Edit
+          </a>
+          <button class="btn btn-danger px-4 py-2" (click)="deleteHotel(hotel.id)">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  }
 </div>
+
