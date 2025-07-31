@@ -4,6 +4,8 @@ import { SeasonService } from '../../../services/season';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -16,7 +18,7 @@ import { RouterLink } from '@angular/router';
 export class Seasons implements OnInit {
   seasons: ISeason[] = [];
 private cdr = inject(ChangeDetectorRef);
-  constructor(private seasonService: SeasonService) {}
+  constructor(private seasonService: SeasonService, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadSeasons();
@@ -30,11 +32,34 @@ private cdr = inject(ChangeDetectorRef);
     });
   }
 
-  deleteSeason(id: number): void {
-    if (confirm("Are you sure you want to delete this season?")) {
-      this.seasonService.delete(id).subscribe(() => {
-        this.loadSeasons();
+  deleteSeason(id: number) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Yes, delete it!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.http.delete(`https://localhost:7235/api/Seasons/${id}`).subscribe({
+        next: () => {
+          this.loadSeasons();
+          Swal.fire(
+            'Deleted!',
+            'Season has been deleted.',
+            'success'
+          );
+        },
+        error: err => {
+          Swal.fire('Error', 'Failed to delete season', 'error');
+        }
       });
     }
-  }
+  });
+}
+
+  
 }

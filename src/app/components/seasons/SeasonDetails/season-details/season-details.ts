@@ -29,7 +29,7 @@ export class SeasonDetails {
     this.http.get(`https://localhost:7235/api/Seasons/${this.seasonId}`).subscribe({
       next: (data: any) => {
         this.season = data;
-        this.cd.detectChanges(); // Force change detection after setting data
+        this.cd.detectChanges(); 
       },
       error: err => {
         this.errorMessage = 'Failed to load season data.';
@@ -38,7 +38,14 @@ export class SeasonDetails {
     });
   }
 
-  back() {
+editSeason() {
+  this.router.navigate(['/dashboard/seasons/edit', this.season.id]);
+}
+
+
+goBack() {
     this.router.navigate(['/dashboard/seasons']);
-  }
+}
+
+
 }

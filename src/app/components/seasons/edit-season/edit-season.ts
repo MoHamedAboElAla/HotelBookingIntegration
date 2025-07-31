@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-edit-season',
@@ -15,6 +16,7 @@ export class EditSeason {
 
   seasonId: number = 0;
   season = {
+    id: 0, 
     name: '',
     startDate: '',
     endDate: '',
@@ -24,7 +26,8 @@ export class EditSeason {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {
     this.seasonId = Number(this.route.snapshot.paramMap.get('id'));
     this.loadSeason();
@@ -34,11 +37,13 @@ export class EditSeason {
     this.http.get(`https://localhost:7235/api/Seasons/${this.seasonId}`).subscribe({
       next: (data: any) => {
         this.season = {
+          id: this.seasonId, 
           name: data.name,
           startDate: data.startDate.substring(0, 10),
           endDate: data.endDate.substring(0, 10),
           priceFactor: data.priceFactor
         };
+        this.cd.detectChanges();
       },
       error: err => {
         alert('Failed to load season');
@@ -46,10 +51,19 @@ export class EditSeason {
       }
     });
   }
-onSubmit() {
+
+ onSubmit() {
   this.validationErrors = [];
 
-  this.http.put(`https://localhost:7235/api/Seasons/${this.seasonId}`, this.season).subscribe({
+  const body = {
+    id: this.seasonId,
+    name: this.season.name,
+    startDate: this.season.startDate,
+    endDate: this.season.endDate,
+    priceFactor: this.season.priceFactor
+  };
+
+  this.http.put(`https://localhost:7235/api/Seasons/${this.seasonId}`, body).subscribe({
     next: () => {
       alert('Season updated successfully!');
       this.router.navigate(['/dashboard/seasons']);
@@ -64,16 +78,16 @@ onSubmit() {
             this.validationErrors.push(...serverErrors[key]);
           }
         }
+
+        
+        this.cd.detectChanges();
       } else {
         this.validationErrors.push('An unexpected error occurred.');
+        this.cd.detectChanges();
       }
     }
   });
 }
-
-
-
-
 
   cancel() {
     this.router.navigate(['/dashboard/seasons']);
