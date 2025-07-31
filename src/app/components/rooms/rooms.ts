@@ -39,8 +39,8 @@ export class Rooms implements OnInit {
   // }
 
 editRoom(room: Room): void {
-    // navigate to edit page with room ID
-   // this.router.navigate(['/edit-room', room.id]);
+  
+    this.router.navigate(['/edit-room', room.id]);
   }
 
   deleteRoom(id: number): void {
