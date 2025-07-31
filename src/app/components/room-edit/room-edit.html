@@ -1,0 +1,24 @@
+<h2>Edit Room</h2>
+<form (ngSubmit)="onSubmit()" #roomForm="ngForm">
+  <div class="form-group">
+    <label for="roomNumber">Room Number</label>
+    <input type="text" id="roomNumber" class="form-control" [(ngModel)]="room.roomNumber" name="roomNumber" required>
+  </div>
+  <div class="form-group">
+    <label for="roomType">Room Type</label>
+    <input type="text" id="roomType" class="form-control" [(ngModel)]="room.roomType" name="roomType" required>
+  </div>
+  <div class="form-group">
+    <label for="pricePerNight">Price Per Night</label>
+    <input type="number" id="pricePerNight" class="form-control" [(ngModel)]="room.pricePerNight" name="pricePerNight" required>
+  </div>
+  <div class="form-group">
+    <label for="isAvailable">Available</label>
+    <input type="checkbox" id="isAvailable" class="form-check-input" [(ngModel)]="room.isAvailable" name="isAvailable">
+  </div>
+  <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+<br />
+<div class="alert alert-success" *ngIf="successMessage">
+  {{ successMessage }}
+</div>
