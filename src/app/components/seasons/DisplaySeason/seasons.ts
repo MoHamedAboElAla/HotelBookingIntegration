@@ -53,11 +53,7 @@ private cdr = inject(ChangeDetectorRef);
     if (result.isConfirmed) {
       this.http.delete(`https://localhost:7235/api/Seasons/${id}`).subscribe({
         next: () => {
-<<<<<<< HEAD
-          this.loadSeasons();
-=======
           this.loadPagedSeasons();
->>>>>>> 5b7f8365539e5496e35564873ab289ea3d50d3d9
           Swal.fire(
             'Deleted!',
             'Season has been deleted.',
@@ -72,9 +68,6 @@ private cdr = inject(ChangeDetectorRef);
   });
 }
 
-<<<<<<< HEAD
-  
-=======
 totalPages(): number {
   return Math.ceil(this.totalCount / this.pageSize);
 }
@@ -84,7 +77,6 @@ previousPage(): void {
     this.pageNumber--;
     this.loadPagedSeasons();
   }
->>>>>>> 5b7f8365539e5496e35564873ab289ea3d50d3d9
 }
 
 nextPage(): void {
