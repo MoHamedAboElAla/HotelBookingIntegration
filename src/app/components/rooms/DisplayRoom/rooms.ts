@@ -63,25 +63,5 @@ export class Rooms implements OnInit {
     });
   }
 
-  // bookRoom(room: Room): void {
-  //   if (room.isAvailable) {
-  //     alert(`Room ${room.roomNumber} has been booked!`);
-  //     // Optionally, you can update availability and call backend
-  //     room.isAvailable = false;
-  //     this.roomService.updateRoom(room.id, room).subscribe({
-  //       next: () => this.loadRooms(),
-  //       error: (err) => {
-  //         console.error('Booking failed', err);
-  //         this.errorMessage = 'Booking failed';
-  //       }
-  //     });
-  //   } else {
-  //     alert('Room is already booked!');
-  //   }
-  // }
 
-  // editRoom(room: Room): void {
-  
-  //   this.router.navigate(['/edit-room', room.id]);
-  // }
 }
