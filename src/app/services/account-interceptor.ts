@@ -3,7 +3,6 @@ import { inject } from '@angular/core';
 import { PlatformService } from './platform.service';
 
 export const accountInterceptor: HttpInterceptorFn = (req, next) => {
-
   const platform = inject(PlatformService);
 
   if (platform.isBrowser()) {

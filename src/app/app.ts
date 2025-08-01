@@ -7,11 +7,11 @@ import { FeaturedHotels } from "./components/featured-hotels/featured-hotels";
 import { ContactUs } from "./components/contact-us/contact-us";
 import { Footer } from "./components/footer/footer";
 import { Home } from "./components/home/home";
-import { Rooms } from './components/rooms/rooms';
+import { Rooms } from './components/rooms/DisplayRoom/rooms';
 
 @Component({
   selector: 'app-root',
-  imports: [Navbar, Footer, RouterOutlet,RouterModule,Rooms],
+  imports: [Navbar, Footer, RouterOutlet,RouterModule],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })

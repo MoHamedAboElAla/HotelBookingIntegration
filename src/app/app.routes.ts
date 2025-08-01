@@ -4,19 +4,13 @@ import { Home } from './components/home/home';
 import { ContactUs } from './components/contact-us/contact-us';
 import { FeaturedHotels } from './components/featured-hotels/featured-hotels';
 import { Dashboard } from './components/dashboard/dashboard';
-
+import { Rooms } from './components/rooms/DisplayRoom/rooms';
+import { Seasons } from './components/seasons/DisplaySeason/seasons';
 import { Hotels } from './components/hotels/hotels';
-// import { Rooms } from './components/rooms/rooms';
-
-//import { Hotels } from './components/hotels/hotels';
-import { Rooms } from './components/rooms/rooms';
-
 import { Bookings } from './components/bookings/bookings';
-
 import { HotelList } from './components/hotel/hotel-list/hotel-list';
 import { HotelRooms } from './components/hotel/hotel-rooms/hotel-rooms';
 import { NotFound } from './components/not-found/not-found';
-
 import { AddSeason } from './components/seasons/add-season/add-season';
 import { EditSeason } from './components/seasons/edit-season/edit-season';
 import { SeasonDetails } from './components/seasons/SeasonDetails/season-details/season-details';
@@ -24,14 +18,13 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
-import { RoomEdit } from './components/room-edit/room-edit';
-
+import { EditRoom } from './components/rooms/EditRoom/room-edit';
 import { Profile } from './components/profile/profile';
 import { ProfileGuard } from './services/profile-guard';
 
 import { Cart } from './components/cart/cart';
 import { PaymentSuccess } from './components/payment-success/payment-success';
-import { Seasons } from './components/seasons/DisplaySeason/seasons';
+import { AddRoom } from './components/rooms/add-room/add-room';
 
 
 export const routes: Routes = [
@@ -64,8 +57,9 @@ export const routes: Routes = [
           import('./components/hotel/hotel-rooms/hotel-rooms').then(m => m.HotelRooms)
       },
       { path: 'rooms', component: Rooms },
+      {path: 'rooms/add-room', component: AddRoom},
+      { path: 'rooms/edit/:id', component: EditRoom },
       //  { path: 'rooms/:id', component: RoomDetails },
-       { path: 'rooms/edit/:id', component: RoomEdit },
       { path: 'seasons', component: Seasons },
       { path: 'seasons/add-season', component: AddSeason },
       { path: 'seasons/edit/:id', component: EditSeason },

@@ -26,6 +26,11 @@ export class RoomService {
   updateRoom(id: number, room: Room): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, room);
   }
+  createRoom(data: FormData): Observable<any> {
+  return this.http.post('https://localhost:7235/api/Rooms', data);
+    
+}
+
 
   deleteRoom(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
