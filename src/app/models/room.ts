@@ -6,6 +6,7 @@ export interface Room {
   isAvailable: boolean;
   description: string;
   imageUrl?: string;
+  hotelName: string;
 }
  
 

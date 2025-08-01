@@ -1,0 +1,56 @@
+<div class="container mt-4">
+
+  <div class="p-4 rounded mb-4" style="background: linear-gradient(to right, #667eea, #764ba2); color: white;">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <h2 class="fw-bold m-0">Room List</h2>
+        <p class="m-0">Manage Rooms</p>
+      </div>
+      <button class="btn btn-info text-white fw-bold px-4 py-2 rounded-pill"  [routerLink]="['/dashboard/rooms/add-room']">
+        + Add New Room
+      </button>
+    </div>
+  </div>
+
+  <div class="card shadow">
+    <div class="card-body">
+      <table class="table table-bordered table-hover text-center">
+        <thead class="table-dark">
+          <tr>
+            <th><i class="bi bi-door-closed-fill me-1"></i>Room #</th>
+            <th><i class="bi bi-list-ul me-1"></i>Type</th>
+            <th><i class="bi bi-image me-1"></i>Image</th>
+            <th><i class="bi bi-percent me-1"></i>Price/Night</th>
+            <th><i class="bi bi-building me-1"></i>Hotel</th>
+            <th><i class="bi bi-check2-circle me-1"></i>Status</th>
+            <th><i class="bi bi-gear-fill me-1"></i>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let room of rooms">
+            <td>{{ room.roomNumber }}</td>
+            <td>{{ room.roomType }}</td>
+            <td>
+              <img [src]="room.imageUrl" width="60" class="rounded shadow-sm" />
+            </td>
+            <td class="text-success fw-bold">{{ room.pricePerNight | number:'1.2-2' }}</td>
+            <td>{{ room.hotelName}}</td>
+            <td>
+              <span class="badge" [ngClass]="room.isAvailable ? 'bg-success' : 'bg-danger'">
+                {{ room.isAvailable ? 'Available' : 'Not Available' }}
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-warning btn-sm me-1" [routerLink]="['/dashboard/rooms/edit', room.id]">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-danger btn-sm me-1" (click)="deleteRoom(room.id)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
