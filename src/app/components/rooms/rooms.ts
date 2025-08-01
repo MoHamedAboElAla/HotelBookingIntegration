@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoomService } from '../../services/room';
 import { Room } from '../../models/room';
@@ -14,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class Rooms implements OnInit {
   rooms: Room[] = [];
   errorMessage = '';
+    private cdr = inject(ChangeDetectorRef); 
+
 
   constructor(private roomService: RoomService, private router: Router) {}
 
@@ -25,6 +27,7 @@ export class Rooms implements OnInit {
     this.roomService.getAllRooms().subscribe({
       next: (data) => {
         this.rooms = data;
+        this.cdr.detectChanges(); 
       },
       error: (error) => {
         console.error('Error loading rooms', error);
@@ -60,7 +63,6 @@ editRoom(room: Room): void {
   bookRoom(room: Room): void {
     if (room.isAvailable) {
       alert(`Room ${room.roomNumber} has been booked!`);
-      // Optionally, you can update availability and call backend
       room.isAvailable = false;
       this.roomService.updateRoom(room.id, room).subscribe({
         next: () => this.loadRooms(),

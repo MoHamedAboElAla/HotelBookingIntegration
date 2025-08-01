@@ -15,8 +15,8 @@ import { Spinner } from "../spinner/spinner";
 })
 export class Bookings implements OnInit {
   private bookingService = inject(BookingService);
-    private cdr = inject(ChangeDetectorRef); 
-      bookings: Booking[] = [];
+  private cdr = inject(ChangeDetectorRef); 
+  bookings: Booking[] = [];
   filteredBookings: Booking[] = [];
   searchTerm: string = '';
 

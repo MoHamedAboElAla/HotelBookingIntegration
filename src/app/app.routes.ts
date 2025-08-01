@@ -7,17 +7,15 @@ import { Dashboard } from './components/dashboard/dashboard';
 
 import { Hotels } from './components/hotels/hotels';
 // import { Rooms } from './components/rooms/rooms';
-import { Seasons } from './components/seasons/seasons';
 
 //import { Hotels } from './components/hotels/hotels';
 import { Rooms } from './components/rooms/rooms';
-import { Seasons } from './components/seasons/DisplaySeason/seasons';
+
 import { Bookings } from './components/bookings/bookings';
 
 import { HotelList } from './components/hotel/hotel-list/hotel-list';
 import { HotelRooms } from './components/hotel/hotel-rooms/hotel-rooms';
 import { NotFound } from './components/not-found/not-found';
-import { Hotels } from './components/hotels/hotels';
 
 import { AddSeason } from './components/seasons/add-season/add-season';
 import { EditSeason } from './components/seasons/edit-season/edit-season';
@@ -26,7 +24,6 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { AdminGuard } from './services/admin-guard';
 import { AgentGuard } from './services/agent-guard';
-import { Rooms } from './components/rooms/rooms';
 import { RoomEdit } from './components/room-edit/room-edit';
 
 import { Profile } from './components/profile/profile';
@@ -34,6 +31,7 @@ import { ProfileGuard } from './services/profile-guard';
 
 import { Cart } from './components/cart/cart';
 import { PaymentSuccess } from './components/payment-success/payment-success';
+import { Seasons } from './components/seasons/DisplaySeason/seasons';
 
 
 export const routes: Routes = [
