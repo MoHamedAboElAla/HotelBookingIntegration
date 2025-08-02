@@ -69,8 +69,7 @@ deleteBooking(bookingId: number) {
       next: () => {
         this.bookings = this.bookings.filter(b => b.bookingId !== bookingId);
         this.cdr.detectChanges();
-        this.LoadItemsCart(); // Reload the cart items 
-
+        this.LoadItemsCart(); 
       },
       error: (err) => {
         alert('لا يمكن حذف الحجز الذي بدأ بالفعل');
@@ -95,7 +94,7 @@ getCartItemCount() {
     .subscribe({
       next: (count) => {
         console.log('عدد العناصر في السلة:', count);
-        this.cartCount = count; // احفظها في متغير تستخدمه في واجهتك
+        this.cartCount = count; 
       },
       error: (err) => {
         console.error('خطأ في جلب عدد العناصر', err);
@@ -110,7 +109,7 @@ get totalPrice(): number {
       .subscribe({
         next: res => {
           alert(res.message || "✅ تم الدفع بنجاح.");
-          // مثال: تحويل لصفحة نجاح وهمية
+        
           this.router.navigate(['/payment-success']);
         },
         error: err => {
@@ -119,6 +118,20 @@ get totalPrice(): number {
       });
 
   }
+ cancelBookings() {
+  this.http.delete("https://localhost:7235/api/Cart/cancel", {})
+    .subscribe({
+      next: () => {
+        alert("✅ تم إلغاء جميع الحجوزات.");
+        this.LoadItemsCart(); 
+      },
+      error: (err) => {
+        console.error(err);
+        alert("❌ حدث خطأ أثناء الإلغاء.");
+      }
+    });
+}
+
 }
 export interface BookingCardView {
    bookingId: number;

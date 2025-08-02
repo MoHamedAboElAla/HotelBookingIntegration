@@ -5,6 +5,7 @@ import { RoomService } from '../../../services/room.service';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { Room } from '../../../models/room';
 
 
 @Component({
@@ -86,6 +87,5 @@ if (!agentId) {
   }
 });
   }
-
 
 }

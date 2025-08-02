@@ -1,31 +1,4 @@
-<!-- <div class="container mt-4">
-  <h3>Rooms for Hotel #{{ hotelId }}</h3>
-  @if (!loading && rooms.length > 0) {
-    <div class="row">
-      @for (room of rooms; track room.id) {
-        <div class="col-md-4 mb-3">
-          <div class="card shadow">
-            <img
-              [src]="'https://localhost:7235' + room.imageUrl"
-              (error)="onImageError($event)"
-              class="card-img-top"
-              alt="Room image"
-            />
-            <div class="card-body">
-              <h5 class="card-title">Room #{{ room.roomNumber }}</h5>
-              <p class="card-text">Type: {{ room.roomType }}</p>
-              <p class="card-text">Price: {{ room.pricePerNight }} SAR</p>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-  } @else if (loading) {
-    <p>Loading rooms...</p>
-  } @else {
-    <p>No rooms found for this hotel.</p>
-  }
-</div> -->
+
 <div class="container mt-4">
   <h3 class="text-primary fw-bold mb-4">Rooms for Hotel #{{ hotelId }}</h3>
   

@@ -22,6 +22,12 @@
       }
     ],
     "no-inline-styles": "off",
-    "axe/structure": "off"
+    "axe/structure": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
+    ]
   }
 }
